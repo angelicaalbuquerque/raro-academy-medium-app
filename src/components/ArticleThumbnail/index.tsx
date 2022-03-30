@@ -46,7 +46,7 @@ export const ArticleThumbnail: React.FC<ArticleThumbnailProps> = ({
         </div>
       </Link>
 
-      <Link to={`/artigo/edit/${id}`}>
+      <Link to={`/artigo/editar/${id}`}>
         <footer className="flex flex-row pt-7 gap-3 items-center">
           <div className="text-gray-500 text-xs my-1">
             {tempoLeitura} de leitura

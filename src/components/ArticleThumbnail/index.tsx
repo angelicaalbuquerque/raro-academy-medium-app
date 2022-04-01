@@ -46,11 +46,11 @@ export const ArticleThumbnail: React.FC<ArticleThumbnailProps> = ({
         </div>
       </Link>
 
-      <Link to={`/artigo/editar/${id}`}>
-        <footer className="flex flex-row pt-7 gap-3 items-center">
-          <div className="text-gray-500 text-xs my-1">
-            {tempoLeitura} de leitura
-          </div>
+      <footer className="flex flex-row pt-7 gap-3 items-center">
+        <div className="text-gray-500 text-xs my-1">
+          {tempoLeitura} de leitura
+        </div>
+        <Link to={`/artigo/editar/${id}`}>
           {editavel && (
             <button
               className={`
@@ -62,8 +62,8 @@ export const ArticleThumbnail: React.FC<ArticleThumbnailProps> = ({
               Editar
             </button>
           )}
-        </footer>
-      </Link>
+        </Link>
+      </footer>
       <hr className="mt-5" />
     </div>
   );

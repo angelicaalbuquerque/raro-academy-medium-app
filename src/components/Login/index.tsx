@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../Button";
@@ -7,10 +8,14 @@ export const Login = () => {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
-  function autenticaUsuario(event: React.FormEvent<HTMLFormElement>) {
+  async function autenticaUsuario(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("login", login);
-    console.log("senha", senha);
+    const url = `http://3.221.159.196:3307/auth/login`;
+    const response = await axios.post(url, { login, senha });
+
+    const { access_token, id } = response.data;
+    console.log(response.status);
+    console.log(access_token, id);
   }
 
   return (

@@ -28,6 +28,8 @@ export const Login = () => {
                 label="Login"
                 placeholder="login"
                 required
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
               />
             </div>
 
@@ -38,6 +40,8 @@ export const Login = () => {
                 label="senha"
                 placeholder="********"
                 required
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
               />
             </div>
           </div>

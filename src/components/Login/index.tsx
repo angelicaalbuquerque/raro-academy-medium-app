@@ -7,6 +7,12 @@ export const Login = () => {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
+  function autenticaUsuario(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log("login", login);
+    console.log("senha", senha);
+  }
+
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -19,7 +25,7 @@ export const Login = () => {
             />
           </Link>
         </div>
-        <form className="mt-8 space-y-6" action="#">
+        <form className="mt-8 space-y-6" onSubmit={autenticaUsuario}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="mt-5">
               <Input

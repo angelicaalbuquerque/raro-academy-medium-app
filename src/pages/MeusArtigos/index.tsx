@@ -16,6 +16,10 @@ export const MeusArtigosPage = () => {
     setArticles(response.data);
   }
 
+  useEffect(() => {
+    buscaMeusArtigos();
+  }, []);
+
   const [articles, setArticles] = useState<ArticleThumbnailProps[]>([]);
 
   useEffect(() => {

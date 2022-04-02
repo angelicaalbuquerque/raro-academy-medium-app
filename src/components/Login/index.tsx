@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
 export const Login = () => {
+  const navigate = useNavigate();
+
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -14,8 +16,9 @@ export const Login = () => {
     const response = await axios.post(url, { login, senha });
 
     const { access_token, id } = response.data;
-    console.log(response.status);
-    console.log(access_token, id);
+    if (access_token) {
+      navigate("/artigos");
+    }
   }
 
   return (

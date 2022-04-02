@@ -1,3 +1,4 @@
+import apiClient from "../../services/api-client";
 import { useEffect, useState } from "react";
 
 import { ArticleList } from "../../components/ArticleList";
@@ -5,6 +6,16 @@ import { ArticleThumbnailProps } from "../../components/ArticleThumbnail/Article
 import { geraArtigos } from "../../stories/helpers/gerador-artigos";
 
 export const MeusArtigosPage = () => {
+  async function buscaMeusArtigos() {
+    const token = localStorage.getItem("access_token");
+
+    const response = await apiClient.get<ArticleThumbnailProps[]>(
+      "/artigos/meus-artigos",
+    );
+
+    setArticles(response.data);
+  }
+
   const [articles, setArticles] = useState<ArticleThumbnailProps[]>([]);
 
   useEffect(() => {

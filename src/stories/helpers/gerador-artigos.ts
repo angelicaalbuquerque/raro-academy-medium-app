@@ -14,5 +14,6 @@ export const geraArtigos = (quantidade: number): ArticleThumbnailProps[] => {
       id: faker.datatype.number({ min: 1, max: 1000 }),
     },
     id: faker.datatype.number({ min: 1, max: 1000 }),
+    conteudo: faker.lorem.paragraphs(),
   }));
 };

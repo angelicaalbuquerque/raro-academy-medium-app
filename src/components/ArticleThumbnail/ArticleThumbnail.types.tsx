@@ -11,4 +11,5 @@ export type ArticleThumbnailProps = {
   };
   editavel?: boolean;
   id: number;
+  conteudo: string;
 };

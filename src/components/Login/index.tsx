@@ -17,6 +17,8 @@ export const Login = () => {
 
     const { access_token, id } = response.data;
     if (access_token) {
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("id", id);
       navigate("/artigos");
     }
   }

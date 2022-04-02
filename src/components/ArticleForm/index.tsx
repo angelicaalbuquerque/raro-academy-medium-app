@@ -8,7 +8,9 @@ export const ArticleForm = () => {
       <div>
         <h1 className="text-xl font-semibold">
           Hello there 👋,&nbsp;
-          <span className="font-normal">please fill in your information to continue</span>
+          <span className="font-normal">
+            please fill in your information to continue
+          </span>
         </h1>
         <form className="mt-6">
           <Input
@@ -34,10 +36,7 @@ export const ArticleForm = () => {
             required
           />
 
-          <RitchTextEditor
-            label="Conteúdo"
-            name="conteudo"
-          />
+          <RitchTextEditor label="Conteúdo" name="conteudo" />
 
           <Button type="submit">Salvar</Button>
         </form>

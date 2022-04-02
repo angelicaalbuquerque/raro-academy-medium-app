@@ -10,17 +10,34 @@ export const Login = () => {
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
+  const [erro, setErro] = useState("");
+
   async function autenticaUsuario(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const url = `http://3.221.159.196:3307/auth/login`;
-    const response = await axios.post(url, { login, senha });
 
-    const { access_token, id } = response.data;
-    if (access_token) {
-      localStorage.setItem("access_token", access_token);
-      localStorage.setItem("id", id);
-      navigate("/artigos");
+    setErro("");
+    setLoading(true);
+
+    try {
+      const url = `http://3.221.159.196:3307/auth/login`;
+      const response = await axios.post(url, { login, senha });
+
+      const { access_token, id } = response.data;
+      if (access_token) {
+        localStorage.setItem("access_token", access_token);
+        localStorage.setItem("id", id);
+        navigate("/artigos");
+      }
+    } catch (error: any) {
+      if (error.response.data.statusCode === 401) {
+        setErro("Usuário ou senha Inválidos");
+      } else {
+        setErro("Erro ao autenticar usuário. Tente novamente mais tarde.");
+      }
     }
+    setLoading(false);
   }
 
   return (
@@ -61,8 +78,17 @@ export const Login = () => {
               />
             </div>
           </div>
+          {erro ? (
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {erro}
+            </span>
+          ) : (
+            <></>
+          )}
           <div>
-            <Button type="submit">Login</Button>
+            <Button disabled={loading} type="submit">
+              {loading ? "Carregando..." : "Entrar"}
+            </Button>
           </div>
         </form>
       </div>

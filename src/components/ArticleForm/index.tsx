@@ -70,25 +70,25 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             required
           />
           <Input
-            placeholder="Breve rewsumo do artigo"
+            placeholder="Breve resumo do artigo"
             type="textarea"
             name="resumo"
             label="Resumo"
             required
           />
 
-          <Input
-            placeholder="Breve rewsumo do artigo"
+          {/* <Input
+            placeholder="Breve resumo do artigo"
             type="file"
             name="image"
             label="Banner"
             value={resumo}
             onChange={(e) => setResumo(e.target.value)}
             required
-          />
+          /> */}
 
           <Input
-            placeholder="Breve rewsumo do artigo"
+            placeholder="Breve resumo do artigo"
             type="file"
             name="image"
             label="Banner"

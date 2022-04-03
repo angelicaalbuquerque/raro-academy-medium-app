@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ActivableLink } from "../ActivableLink";
 
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -26,12 +27,12 @@ export const Navigation = () => {
 
   return (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/artigos">Meus Artigos</Link>
-      <Link to="/artigos/novo">Novo Artigo</Link>
-      <Link to="/" onClick={logout}>
+      <ActivableLink to="/">Home</ActivableLink>
+      <ActivableLink to="/artigos">Meus Artigos</ActivableLink>
+      <ActivableLink to="/artigos/novo">Novo Artigo</ActivableLink>
+      <ActivableLink to="/" type="button" onClick={logout}>
         Logout
-      </Link>
+      </ActivableLink>
     </>
   );
 };

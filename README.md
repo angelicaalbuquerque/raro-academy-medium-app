@@ -26,6 +26,21 @@
 
 Criação de plataforma similar ao Medium para a Imersão React da Raro Academy.
 
+🧭 Como rodar o projeto
+
+```BASH
+# Clone este repositório
+$ git clone https://github.com/angelicaalbuquerque/raro-academy-medium-app
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação
+$ npm start
+
+# rodando na porta 3000
+```
+
 ## 📬 Entre em contato!
 
 <p align="left">

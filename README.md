@@ -1,5 +1,5 @@
 <h2 align="center">
-  Tic-Tac-Toe | Raro Academy
+  Medium | Raro Academy
 </h2>
 
 <p align="center">

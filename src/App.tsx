@@ -8,6 +8,7 @@ import { NotFoundPage } from "./pages/NotFound";
 import { EditarArquivoPage } from "./pages/EditarArquivo";
 import { MeusArtigosPage } from "./pages/MeusArtigos";
 import { ArtigoPage } from "./pages/Artigo";
+import { RequireAuth } from "./components/RequireAuth";
 
 function App() {
   return (
@@ -18,9 +19,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<ArtigosPage />} />
           <Route path="/artigo/:id" element={<ArtigoPage />} />
-          <Route path="/artigos" element={<MeusArtigosPage />} />
-          <Route path="/artigo/editar/:id" element={<EditarArquivoPage />} />
-          <Route path="/artigos/novo" element={<EditarArquivoPage />} />
+
+          <Route element={<RequireAuth />}>
+            <Route path="/artigos" element={<MeusArtigosPage />} />
+            <Route path="/artigo/editar/:id" element={<EditarArquivoPage />} />
+            <Route path="/artigos/novo" element={<EditarArquivoPage />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

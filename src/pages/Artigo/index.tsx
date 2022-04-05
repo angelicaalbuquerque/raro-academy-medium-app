@@ -1,26 +1,32 @@
 import faker from "@faker-js/faker";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { ArticleView } from "../../components/ArticleView";
+import apiClient from "../../services/api-client";
 
 export const ArtigoPage = () => {
   const [article, setArticle] = useState<string>("");
-  const [autor] = useState({
+  const [tempoLeitura, setTempoLeitura] = useState<string>("");
+  const [autor, setAutor] = useState({
     nome: faker.name.firstName(),
     avatar: faker.image.avatar(),
   });
-  const [dataPublicacao] = useState(new Date());
+  const [dataPublicacao, setDataPublicacao] = useState(new Date());
+  let { id } = useParams();
 
   useEffect(() => {
     async function loadArticle() {
-      // este article.md precisa ser adicionado, temporariamente ao nosso código. Podemos copiar este conteúdo dentro da nossa pasta /public.
-      // sugiro que você retire este documento de `src/stories/assets/markdown/article.md`
-      const response = await fetch("/article.md");
-      const article = await response.text();
-      setArticle(article);
+      const { data } = await apiClient.get<ArtigoResponseType>(
+        `/artigos/${id}`,
+      );
+      setAutor(data.autor);
+      setDataPublicacao(new Date(data.dataPublicacao));
+      setArticle(data.conteudo);
+      setTempoLeitura(data.tempoDeLeitura);
     }
 
     loadArticle();
-  }, []);
+  }, [id]);
 
   return (
     <div className="m-10">
@@ -28,8 +34,28 @@ export const ArtigoPage = () => {
         article={article}
         autor={autor}
         dataPublicacao={dataPublicacao}
-        tempoLeitura={"10min"}
+        tempoLeitura={tempoLeitura}
       />
     </div>
   );
+};
+
+type ArtigoResponseType = {
+  id: number;
+  autor: AutorResponseType;
+  conteudo: string;
+  dataAtualizacao: string;
+  dataPublicacao: string;
+  imagem: string;
+  resumo: string;
+  tempoDeLeitura: string;
+  titulo: string;
+};
+
+type AutorResponseType = {
+  id: number;
+  avatar: string;
+  login: string;
+  nome: string;
+  senha: string;
 };

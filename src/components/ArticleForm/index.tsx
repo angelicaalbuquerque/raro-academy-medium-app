@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { ArticleThumbnailProps } from "../ArticleThumbnail/ArticleThumbnail.types";
 import { Button } from "../Button";
+import { DangerButton } from "../Button/danger";
 import { Input } from "../Input";
 import { RitchTextEditor } from "../RitchTextEditor";
 
 type ArticleFormProps = {
   article?: ArticleThumbnailProps;
   onSubmit?: (article: ArticleThumbnailProps) => void;
+  onRemove?: (article: ArticleThumbnailProps) => void;
 };
 
 export const ArticleForm: React.FC<ArticleFormProps> = ({
   article,
   onSubmit,
+  onRemove,
 }) => {
   const [titulo, setTitulo] = useState("");
   const [resumo, setResumo] = useState("");
@@ -24,6 +27,8 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
       setResumo(article.resumo);
       setImagem(article.imagem);
       setConteudo(article.conteudo || "");
+    } else {
+      handleClear();
     }
   }, [article]);
 
@@ -39,6 +44,19 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
       };
       onSubmit(articleToSubmit as ArticleThumbnailProps);
     }
+  };
+
+  const handleRemove = (article: ArticleThumbnailProps) => {
+    if (onRemove) {
+      onRemove(article as ArticleThumbnailProps);
+    }
+  };
+
+  const handleClear = () => {
+    setTitulo("");
+    setResumo("");
+    setImagem("");
+    setConteudo("");
   };
 
   const transformaImagemEmBase64 = (event: any) => {
@@ -74,6 +92,8 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
             type="textarea"
             name="resumo"
             label="Resumo"
+            value={resumo}
+            onChange={(e) => setResumo(e.target.value)}
             required
           />
 
@@ -104,6 +124,11 @@ export const ArticleForm: React.FC<ArticleFormProps> = ({
           />
 
           <Button type="submit">Salvar</Button>
+          {article?.id && (
+            <DangerButton type="button" onClick={() => handleRemove(article)}>
+              Remove
+            </DangerButton>
+          )}
         </form>
       </div>
     </div>

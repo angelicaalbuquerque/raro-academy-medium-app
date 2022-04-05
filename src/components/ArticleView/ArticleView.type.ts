@@ -6,4 +6,4 @@ export type ArticleViewProps = {
   };
   dataPublicacao: Date;
   tempoLeitura: string;
-}
+};
